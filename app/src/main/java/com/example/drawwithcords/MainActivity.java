@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CustomDrawableView customDrawableView = new CustomDrawableView(this);
+        customDrawableView = new CustomDrawableView(this);
         setContentView(customDrawableView);
     }
 }

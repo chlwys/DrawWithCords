@@ -24,9 +24,16 @@ public class DotDrawable extends Drawable {
 
         // Draw a red circle in the center
         //canvas.drawCircle(width/2, height/2, radius, redPaint);
-        for (int i = 100; i < 101; i++) {
-            bigPoint(i,i, paint, canvas);
+        DataM call = new DataM();
+        int[][] values = call.splitByComma();
+        for (int i = 0; i <= values.length; i++) {
+            int x, y, p;
+            x = values[i][3];
+            y = values[i][4];
+            bigPoint(x, y, paint, canvas);
+            //for (int j = 0; j <= 4; j++)
         }
+//        bigPoint(100,100, paint, canvas);
     }
 
     @Override

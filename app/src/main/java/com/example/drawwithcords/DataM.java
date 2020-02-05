@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
 public class DataM {
-    /*String tester = "1572585050946,1572585038R,1,16779,17060,203\n" +
+    String tester = "1572585050946,1572585038R,1,16779,17060,203\n" +
 "1572585050951,1572585038R,1,16779,17060,203\n" +
 "1572585050956,1572585038R,1,16779,17060,203\n" +
 "1572585050961,1572585038R,1,16779,17060,203\n" +
@@ -307,8 +307,8 @@ public class DataM {
 "1572585054126,1572585038R,2,16901,17044,958\n" +
 "1572585054131,1572585038R,2,16901,17044,977\n" +
 "1572585054136,1572585038R,2,16901,17044,993\n" +
-"1572585054141,1572585038R,2,16901,17044,1007"; */
-    private String tester;
+"1572585054141,1572585038R,2,16901,17044,1007";
+    //private String tester;
     private Context mContext;
     public DataM (Context context) {
         mContext = context;
@@ -326,7 +326,7 @@ public class DataM {
             input = new BufferedReader(isr);
             String line;
             while ((line = input.readLine()) != null) {
-                returnString.append(line);
+                returnString.append(line + "\n");
             }
         } catch (Exception e) {
             e.getMessage();
@@ -346,19 +346,22 @@ public class DataM {
     }
 
     private String splitByLine(int pos) {
-        String[] result =  Pattern.compile("\n").split(readFromAssets("sampleData", mContext));
+        String[] result =  Pattern.compile("\n").split(readFromAssets("sampleData.txt", mContext));
+        //String[] result =  readFromAssets("sampleData.txt", mContext).split(":");
         return result[pos];
     }
 
     private int lengthOf () {
-        String[] result =  Pattern.compile("\n").split(readFromAssets("sampleData", mContext));
+        String[] result =  Pattern.compile("\n").split(readFromAssets("sampleData.txt", mContext));
+        //String[] result =  readFromAssets("sampleData.txt", mContext).split(":");
         return result.length;
     }
 
     public long[][] splitByComma() {
-        long[][] indiv = new long[lengthOf()][];
+        long[][] indiv = new long[lengthOf()/700 + 1][];
+        int k = 0;
+        for (int i = 0; i < lengthOf(); i+=700) {
 
-        for (int i = 0; i < lengthOf(); i++) {
             String[] middleman = Pattern.compile(",").split(splitByLine(i));
             long[] intiLong = new long[6];
             intiLong[0] = Long.parseLong(middleman[0]);
@@ -366,7 +369,8 @@ public class DataM {
                 // starts at 2 to remove ID
                 intiLong[j] = Long.parseLong(middleman[j]);
             }
-            indiv[i] = intiLong;
+            indiv[k] = intiLong;
+            k++;
         }
         return indiv;
     }

@@ -17,7 +17,7 @@ public class CustomDrawableView extends View {
         int width = this.getWidth();
         int height = this.getHeight();
 
-        drawable = new DotDrawable();
+        drawable = new DotDrawable(context);
         drawable.setBounds(x, y, x + width, y + height);
     }
 

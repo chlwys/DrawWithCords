@@ -21,16 +21,7 @@ public class DotDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        // Get the drawable's bounds
-       /* int width = getBounds().width();
-        int height = getBounds().height();
-        float radius = Math.min(width, height) / 2; */
 
-        // Draw a red circle in the center
-        //canvas.drawCircle(width/2, height/2, radius, redPaint);
-        /*canvas.drawLine(10,10,1000,10, paint);
-        canvas.drawLine(10,10,10,1000, paint);
-        bigPoint(1000,1000,paint,canvas); */
         DataM call = new DataM(mContext);
         long[][] values = call.splitByComma();
         for (int i = 0; i < values.length; i++) {
@@ -38,11 +29,10 @@ public class DotDrawable extends Drawable {
             if (values[i][4] > 500) {
                 x = (int) values[i][2] / 5 + 100;
                 y = (int) values[i][3] / 20 + 10;
+                paint.setARGB(255, (int) values[i][4] / 8 - 100, 0,0);
                 bigPoint(x, y, paint, canvas);
             }
-            //for (int j = 0; j <= 4; j++)
         }
-        //bigPoint(100,100, paint, canvas);
     }
 
     @Override
